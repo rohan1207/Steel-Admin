@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { login } from '@/lib/api'
 
 export default function LoginPage() {
   const navigate = useNavigate()
@@ -13,13 +14,7 @@ export default function LoginPage() {
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('/api/admin/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Login failed')
+      const data = await login(email, password)
       localStorage.setItem('sepl_admin_token', data.token)
       navigate('/')
     } catch (err) {

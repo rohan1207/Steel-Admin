@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { api, getToken } from '@/lib/api'
+import { API_BASE, api, getToken } from '@/lib/api'
 
 const TYPES = [
   '',
@@ -26,7 +26,7 @@ export default function LeadsAdminPage() {
 
   const exportCsv = async () => {
     const q = typeFilter ? `?type=${encodeURIComponent(typeFilter)}` : ''
-    const res = await fetch(`/api/admin/leads/export${q}`, {
+    const res = await fetch(`${API_BASE}/leads/export${q}`, {
       headers: { Authorization: `Bearer ${getToken()}` },
     })
     const blob = await res.blob()

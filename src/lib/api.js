@@ -1,7 +1,30 @@
-const API_BASE = '/api/admin'
+function resolveApiBase() {
+  const raw = (import.meta.env.VITE_API_URL || '').trim().replace(/\/$/, '')
+  if (!raw) return '/api/admin'
+  return raw.endsWith('/api/admin') ? raw : `${raw}/api/admin`
+}
+
+export const API_BASE = resolveApiBase()
 
 export function getToken() {
   return localStorage.getItem('sepl_admin_token')
+}
+
+export async function login(email, password) {
+  const res = await fetch(`${API_BASE}/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  })
+
+  const ct = res.headers.get('content-type') || ''
+  const data = ct.includes('application/json') ? await res.json() : null
+
+  if (!res.ok) {
+    throw new Error(data?.error || `Login failed (${res.status})`)
+  }
+
+  return data
 }
 
 export async function api(path, options = {}) {
@@ -22,8 +45,9 @@ export async function api(path, options = {}) {
   }
 
   if (!res.ok) {
-    const err = await res.json().catch(() => ({}))
-    throw new Error(err.error || 'Request failed')
+    const ct = res.headers.get('content-type') || ''
+    const err = ct.includes('application/json') ? await res.json().catch(() => ({})) : {}
+    throw new Error(err.error || `Request failed (${res.status})`)
   }
 
   const ct = res.headers.get('content-type') || ''
