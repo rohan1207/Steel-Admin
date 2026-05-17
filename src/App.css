@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  font-family: var(--myfont);
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  background: #FFF8F0;
+  min-height: 100vh;
+}
+
+/* Modern Navbar Styles - Updated for elegant premium design */
+/* Old navbar styles removed - using new component-based design */
+
+/* Ensure content starts below fixed navbar */
+.inner-contents {
+  padding-top: 80px; /* Account for fixed navbar height */
+}
+
+@media (max-width: 1024px) {
+  .inner-contents {
+    padding-top: 80px;
+  }
+}
+
+.input100:focus + .focus-input100 {
+  visibility: visible;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.alert-validate::before {
+  content: attr(data-validate);
+  position: absolute;
+  max-width: 70%;
+  background-color: #fff;
+  border: 1px solid #c80000;
+  border-radius: 2px;
+  padding: 4px 25px 4px 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 2px;
+  pointer-events: none;
+  font-family: Poppins-Regular;
+  color: #c80000;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity .4s;
+}
+
+.alert-validate::after {
+  content: "\f12a";
+  font-family: FontAwesome;
+  display: block;
+  position: absolute;
+  color: #c80000;
+  font-size: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 8px;
+}
+
+.alert-validate:hover:before {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 992px) {
+  .alert-validate::before {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+/* Bootstrap navbar override */
+.navbar-toggler {
+  border: none;
+  padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Responsive utilities */
+@media (max-width: 1200px) {
+  .digital-cat-btn {
+    width: fit-content;
+    padding: 10px !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .mainPageContentInner {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .first-section-left,
+  .first-section-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-basis: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .homeImg-container {
+    flex-basis: 100%;
+    max-width: 100%;
+    margin-left: -9%;
+  }
+  
+  .headText1,
+  .headText2 {
+    font-size: 14px !important;
+    display: flex;
+    padding: 0% !important;
+    width: 100%;
+  }
+  
+  .headText2 {
+    top: -15px !important;
+  }
+}
