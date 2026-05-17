@@ -117,25 +117,8 @@ export default function DashboardPage() {
       <h1 className="text-2xl font-bold text-navy-900 mb-2">Dashboard</h1>
       <p className="text-sm text-slate-500 mb-6">Manage website content and review lead tracking.</p>
 
-      <Link
-        to={leadsCard.to}
-        className="block bg-indigo-600 text-white rounded-xl p-5 mb-6 hover:bg-indigo-700 transition-colors max-w-sm"
-      >
-        <p className="text-sm text-indigo-100">{leadsCard.label}</p>
-        <p className="text-4xl font-bold mt-1">{leadsCard.value}</p>
-      </Link>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-        {cards.slice(1).map((c) => (
-          <Link key={c.to} to={c.to} className="bg-white border rounded-xl p-5 hover:border-indigo-300 transition-colors">
-            <p className="text-sm text-slate-500">{c.label}</p>
-            <p className="text-3xl font-bold text-navy-900 mt-1">{c.value}</p>
-          </Link>
-        ))}
-      </div>
-
       {stats && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
           <section className="bg-white border rounded-xl p-6">
             <h2 className="text-lg font-semibold text-navy-900 mb-1">Content comparison</h2>
             <p className="text-sm text-slate-500 mb-5">Relative size of each CMS module (excludes leads).</p>
@@ -148,6 +131,23 @@ export default function DashboardPage() {
           </section>
         </div>
       )}
+
+      <Link
+        to={leadsCard.to}
+        className="block bg-indigo-600 text-white rounded-xl p-5 mb-6 hover:bg-indigo-700 transition-colors max-w-sm"
+      >
+        <p className="text-sm text-indigo-100">{leadsCard.label}</p>
+        <p className="text-4xl font-bold mt-1">{leadsCard.value}</p>
+      </Link>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {cards.slice(1).map((c) => (
+          <Link key={c.to} to={c.to} className="bg-white border rounded-xl p-5 hover:border-indigo-300 transition-colors">
+            <p className="text-sm text-slate-500">{c.label}</p>
+            <p className="text-3xl font-bold text-navy-900 mt-1">{c.value}</p>
+          </Link>
+        ))}
+      </div>
     </div>
   )
 }

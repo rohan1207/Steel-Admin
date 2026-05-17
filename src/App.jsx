@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import AdminLayout from '@/components/AdminLayout'
+import MobileBlocker from '@/components/MobileBlocker'
 import LoginPage from '@/pages/LoginPage'
 import DashboardPage from '@/pages/DashboardPage'
 import JobsAdminPage from '@/pages/JobsAdminPage'
@@ -22,7 +23,8 @@ function RequireAuth({ children }) {
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <MobileBlocker>
+      <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route
@@ -48,6 +50,7 @@ export default function App() {
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </BrowserRouter>
+      </BrowserRouter>
+    </MobileBlocker>
   )
 }
